@@ -25,28 +25,27 @@ import java.util.List;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    public ViewResolver viewResolver()
-    {
-        InternalResourceViewResolver viewResolver=new InternalResourceViewResolver();
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/view/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
     @Override
     public void configurePathMatch(PathMatchConfigurer configurer) {
-        UrlPathHelper urlPathHelper=new UrlPathHelper();
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
         urlPathHelper.setRemoveSemicolonContent(false);
         configurer.setUrlPathHelper(urlPathHelper);
     }
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        // converters.add(new StringHttpMessageConverter());
-        // converters.add(new Jaxb2RootElementHttpMessageConverter());
         converters.add(new MappingJackson2HttpMessageConverter());
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-       registry.addInterceptor(new TimeInterceptor()).addPathPatterns("/time/**");
+        registry.addInterceptor(new TimeInterceptor()).addPathPatterns("/time/**");
     }
 }

@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<h1> Home:${p} </h1>
+<h1> Home </h1>
 </body>
 </html>
